@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "produtos")
@@ -25,6 +26,12 @@ public class Produto {
 	
 	@NotNull(message = "O atributo descricao é obrigatório!")
 	private String descricao;
+
+	@NotNull(message = "O atributo quantidade é obrigatório!")
+    private Integer quantidade; 
+
+	@NotNull(message = "O atributo preco é obrigatório!")
+    private BigDecimal preco; 
 	
 	@ManyToOne
 	@JsonIgnoreProperties("produtos")
@@ -54,6 +61,22 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
+	public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+	
 	public Categoria getCategoria() {
 		return categoria;
 	}
