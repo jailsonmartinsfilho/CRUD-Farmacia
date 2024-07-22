@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Table(name = "produtos")
 public class Produto {
 	
-	@Id
+	@Id	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
