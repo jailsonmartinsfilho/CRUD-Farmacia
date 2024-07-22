@@ -49,8 +49,15 @@ public class CategoriaController {
 
 	@PostMapping
 	public ResponseEntity<Categoria> post(@Valid @RequestBody Categoria categoria) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
+	    if (categoriaRepository.existsByNome(categoria.getNome())) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+	                .body(null); 
+	    }
+
+	    Categoria categoriaSalva = categoriaRepository.save(categoria);
+	    return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
 	}
+
 
 	@PutMapping
 	public ResponseEntity<Categoria> put(@Valid @RequestBody Categoria categoria) {
